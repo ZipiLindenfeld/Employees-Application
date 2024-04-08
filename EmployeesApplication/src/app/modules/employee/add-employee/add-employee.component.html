@@ -1,0 +1,24 @@
+<!-- <h2>Employee Roles</h2>
+
+  <div formArrayName="roles">
+    <div *ngFor="let roleControl of roles.controls; let i = index" calss="userRolesDiv">
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="roleId">
+            <mat-option *ngFor="let role of availableRoles" [value]="role.role.id">{{ role.role.roleName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Entry Date</mat-label>
+          <input matInput type="date" formControlName="entryDate" name="entryDate">
+          <mat-icon matSuffix>event</mat-icon>
+        </mat-form-field>
+        <button mat-icon-button type="button" (click)="removeRole(i)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="button" (click)="addRole()">Add Role</button> -->

@@ -1,0 +1,33 @@
+
+.example-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:fit-content;
+}
+#addForm{
+    display: flex;
+    justify-content: center;
+}
+#saveOrCancel{
+    width: fit-content;
+}
+.chips-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    margin: 4px;
+    background-color: #e0e0e0;
+    border-radius: 16px;
+  }
+  
+  .chip button {
+    margin-left: 4px;
+    background-color: transparent;
+  }
+  
