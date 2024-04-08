@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from '../employee.service';
-import { Employee } from '../employee.model';
+import { Employee, Gender } from '../employee.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'; import { MatDialog } from '@angular/material/dialog';
-import { AddEmployeeDialogComponent } from '../add-employee-dialog-component/add-employee-dialog-component.component';
-import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import * as XLSX from 'xlsx';
 import { EmployeeRole } from '../employee-role.model';
 import { RoleService } from '../role.service';
 import { Role } from '../role.model';
 import { EmployeeDetailesComponent } from '../employee-detailes/employee-detailes.component';
 import { AddRoleComponent } from '../add-role/add-role.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 @Component({
   selector: 'app-all-employees',
@@ -38,7 +37,7 @@ export class AllEmployeesComponent {
     if (emp == null)
       emp = new Employee();
     console.log(emp)
-    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+    const dialogRef = this.dialog.open(AddEmployeeComponent, {
       width: '1000px',
       data: { emp: emp, roles: this.roles }
     });
@@ -76,7 +75,18 @@ export class AllEmployeesComponent {
     });
   }
   exportToExcel(): void {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.employees);
+    // Create a deep copy of the employees array
+    const employeesCopy = JSON.parse(JSON.stringify(this.employees));
+
+    // Map over the employees array to replace gender value with its string representation
+    employeesCopy.forEach(employee => {
+      employee.gender = employee.gender === Gender.Male ? 'Male' : 'Female';
+      // Remove the roles property from each employee object
+      delete employee.roles;
+    });
+
+    // Define the columns to include in the Excel file
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(employeesCopy, { header: ['firstName', 'lastName', 'employeeIdentification', 'startDate', 'gender'] });
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Employees');
     XLSX.writeFile(wb, 'employees.xlsx');

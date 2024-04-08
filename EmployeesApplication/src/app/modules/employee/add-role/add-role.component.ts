@@ -4,7 +4,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-role',
-  standalone: false,
   templateUrl: './add-role.component.html',
   styleUrl: './add-role.component.scss'
 })
@@ -17,7 +16,7 @@ export class AddRoleComponent {
     })
   }
   add() {
-    console.log("kk",this.roleForm.value);
+    console.log("kk", this.roleForm.value);
     this.dialogRef.close(this.roleForm.value);
   }
 }

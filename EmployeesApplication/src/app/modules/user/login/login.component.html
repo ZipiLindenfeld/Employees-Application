@@ -4,8 +4,8 @@
             <mat-label for="userName">user name</mat-label>
             <input matInput type="text" placeholder="userName" name="userName" formControlName="userName" />
         </mat-form-field>
-        <ng-container *ngIf="this.loginForm.controls['userName'].errors&&this.loginForm.controls['userName'].touched">
-            <div *ngIf="!loginForm.controls['userName'].errors['required']&&!loginForm.controls['userName'].errors['minLength']"
+        <ng-container *ngIf="this.loginForm.controls['userName'].errors && this.loginForm.controls['userName'].touched">
+            <div *ngIf="!loginForm.controls['userName'].errors['required'] && !loginForm.controls['userName'].errors['minLength']"
                 style="color: red;">
                 min length is 3 chars</div>
             <div *ngIf="loginForm.controls['userName'].errors['required']" style="color: red;">this field
@@ -19,8 +19,8 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <ng-container *ngIf="this.loginForm.controls['password'].errors&&this.loginForm.controls['password'].touched">
-            <div *ngIf="!loginForm.controls['password'].errors['required']&&!loginForm.controls['password'].errors['minLength']"
+        <ng-container *ngIf="this.loginForm.controls['password'].errors && this.loginForm.controls['password'].touched">
+            <div *ngIf="!loginForm.controls['password'].errors['required'] && !loginForm.controls['password'].errors['minLength']"
                 style="color: red;">
                 min length is 3 chars</div>
             <div *ngIf="loginForm.controls['password'].errors['required']" style="color: red;">this field

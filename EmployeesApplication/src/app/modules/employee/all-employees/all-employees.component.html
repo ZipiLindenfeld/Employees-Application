@@ -1,58 +1,51 @@
-<div id="options">
-    <button mat-button (click)="openAddEmployeeDialog(null)">
-        <mat-icon>add_circle</mat-icon>
-        Add Employee
-    </button>
-    <button mat-button (click)="exportToExcel()">
-        <mat-icon>cloud_download</mat-icon>
-        Export to Excel
-    </button>
-    <div class="selectPart">
-        <label class="custom-label">search by name</label>
-        <input matInput type="text" [(ngModel)]="pattern" (input)="change()" placeholder="select name" />
+<div class="table-options">
+    <div class="search-field">
+        <mat-form-field appearance="fill">
+            <mat-label>Search by name</mat-label>
+            <input matInput type="text" [(ngModel)]="pattern" (input)="change()" placeholder="Select name">
+            <button mat-button matSuffix>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
     </div>
-
-    <button mat-button (click)="addRole()">
-        <mat-icon>work</mat-icon> Add Role
-    </button>
-</div>
-<div class="cards">
-    <mat-card class="example-card" *ngFor="let employee of employees">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title class="name">{{employee.lastName}} {{employee.firstName}}</mat-card-title>
-            <mat-card-subtitle>{{employee.employeeIdentification}}</mat-card-subtitle>
-            <mat-card-subtitle>{{employee.startDate}}</mat-card-subtitle>
-            <mat-card-actions>
-                <mat-icon>arrow_forward</mat-icon>
-                <button mat-button (click)="openShowDetailsEmployeeDialog(employee)">More Detailes</button>
-                <mat-icon>edit</mat-icon>
-                <button mat-button (click)="openAddEmployeeDialog(employee)">Edit</button>
-                <mat-icon>delete</mat-icon>
-                <button mat-button (click)="deleteEmployee(employee.id)">Delete</button>
-            </mat-card-actions>
-        </mat-card-header>
-    </mat-card>
-</div>
-
-<!-- <button (click)="openAddEmployeeDialog()">Add Employee</button>
-
-<div id="addEmployeeModal" class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Add Employee</h2>
-                <button class="close" (click)="closeAddEmployeeDialog()">x</button>
-            </div>
-            <div class="modal-body">
-                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" (click)="closeAddEmployeeDialog()">Close</button>
-                <button class="btn btn-primary" (click)="saveNewEmployee()">Save</button>
-            </div>
-        </div>
+    <div class="buttons">
+        <button mat-button (click)="openAddEmployeeDialog(null)">
+            <mat-icon>add_circle</mat-icon>
+            Add Employee
+        </button>
+        <button mat-button (click)="exportToExcel()">
+            <mat-icon>cloud_download</mat-icon>
+            Export to Excel
+        </button>
+        <button mat-button (click)="addRole()">
+            <mat-icon>work</mat-icon> Add Role
+        </button>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@angular/material@12.2.8/bundles/material.umd.min.js"></script> -->
+<div class="tableDiv">
+    <table class="table tableTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Employee Identification</th>
+                <th>Start Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+                <td>{{ employee.employeeIdentification }}</td>
+                <td>{{ employee.startDate |date }}</td>
+                <td>
+                    <mat-icon>arrow_forward</mat-icon>
+                    <button mat-button (click)="openShowDetailsEmployeeDialog(employee)">More Details</button>
+                    <mat-icon>edit</mat-icon>
+                    <button mat-button (click)="openAddEmployeeDialog(employee)">Edit</button>
+                    <mat-icon>delete</mat-icon>
+                    <button mat-button (click)="deleteEmployee(employee.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Server.API.Models;
 using Server.Core.Entities;
@@ -14,18 +15,24 @@ public class AuthController : ControllerBase
     private readonly IConfiguration _configuration;
     private readonly IUserService _userService;
 
-    public AuthController(IConfiguration configuration,IUserService userService)
+    public AuthController(IConfiguration configuration, IUserService userService)
     {
         _configuration = configuration;
         _userService = userService;
+    }
+    [Authorize]
+    [HttpPost("register")]
+    public bool Register([FromBody] string password)
+    {
+        return password.Equals(_configuration["UsersPassword"]);
     }
 
     [HttpPost]
     public IActionResult Login([FromBody] UserPostModel loginModel)
     {
-        var user = _userService.GetUsersAsync().Result.FirstOrDefault(u=>u.UserName==loginModel.UserName);
+        var user = _userService.GetUsersAsync().Result.FirstOrDefault(u => u.UserName == loginModel.UserName);
 
-        if (loginModel.Password == user.Password)
+        if (user!=null&&loginModel.Password == user.Password)
         {
             var claims = new List<Claim>()
             {

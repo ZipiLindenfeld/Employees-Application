@@ -1,33 +1,86 @@
+.dialog-content {
+    max-height: 900px;
+    justify-content: center;
+}
 
-.example-container{
+#addDiv {
+    padding-top: 50px;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width:fit-content;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 600px;
+    overflow: auto;
 }
-#addForm{
+
+.roleDiv {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
 }
-#saveOrCancel{
-    width: fit-content;
-}
-.chips-container {
+
+
+.example-container {
     display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .chip {
-    display: inline-flex;
     align-items: center;
-    padding: 4px 8px;
-    margin: 4px;
-    background-color: #e0e0e0;
-    border-radius: 16px;
-  }
-  
-  .chip button {
-    margin-left: 4px;
-    background-color: transparent;
-  }
-  
+    flex-direction: row;
+}
+
+.userRoles,
+.availableRoles {
+    width: 250px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    ;
+}
+
+.userRolesDiv,
+.availableRolesDiv {
+    width: 100px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    //background-color: red;
+}
+
+#rolesDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.mat-card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* Optional: Adjust as needed */
+    justify-content: space-around;
+    /* Optional: Adjust as needed */
+}
+
+p {
+    width: 30px;
+}
+
+.wide-input {
+    width: 150px;
+    display: flex;
+    align-self: center;
+}
+
+.wide {
+    width: 50px;
+    display: flex;
+    align-self: center;
+}
+
+.rolerole {
+    display: flex;
+    justify-content: center;
+}
+
+#saveOrCancel {
+    display: flex;
+    justify-content: center;
+}

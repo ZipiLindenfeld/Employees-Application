@@ -3,7 +3,7 @@ import { Employee } from '../employee.model';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AddEmployeeDialogComponent } from '../add-employee-dialog-component/add-employee-dialog-component.component';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 
 @Component({

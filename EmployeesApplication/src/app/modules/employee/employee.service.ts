@@ -14,7 +14,7 @@ export class EmployeeService implements OnInit {
 
   }
   initTokenAndHeader() {
-    if (typeof window !== undefined) {
+    if (typeof sessionStorage !== undefined) {
       this.token = sessionStorage?.getItem('userToken');
       this.header = new HttpHeaders().set('Authorization', this.token);
     }

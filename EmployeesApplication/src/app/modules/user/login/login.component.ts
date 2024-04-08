@@ -31,7 +31,7 @@ export class LoginComponent {
       if (paramMap)
         if (paramMap.has("isLogout")) {
           if (paramMap.get("isLogout"))
-            if (typeof window !== undefined)
+            if (typeof sessionStorage !== undefined)
               sessionStorage.removeItem('userToken');
         }
     });
@@ -39,7 +39,7 @@ export class LoginComponent {
   loginUser() {
     this.user = this.loginForm.value;
     this._userService.loginUser(this.user).subscribe(data => {
-      if (typeof window !== undefined) {
+      if (typeof sessionStorage !== undefined) {
         sessionStorage?.setItem('userToken', 'Bearer ' + data.token)
         this.router.navigate(['employee/allEmployees'])
       }

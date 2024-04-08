@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Server.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,21 @@ namespace Server.Data
 {
     public class DataContext : DbContext
     {
+        private readonly IConfiguration _configuration;
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Employees_db");
+            optionsBuilder.UseSqlServer(_configuration["DbConnectionString"]);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EmployeeRole>().HasKey(er => new { er.RoleId, er.EmployeeId });
         }
-        public DataContext()
+        public DataContext(IConfiguration configuration)
         {
-
+            _configuration = configuration;
         }
     }
 }

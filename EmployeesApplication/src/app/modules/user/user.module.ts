@@ -9,12 +9,13 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { RoleService } from "../employee/role.service";
+import { RegisterComponent } from "./register/register.component";
 
 
 @NgModule({
-    declarations: [LoginComponent],
+    declarations: [LoginComponent, RegisterComponent],
     imports: [FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule, UserRoutingModule, MatFormFieldModule, MatIconModule, MatInputModule],
-    providers: [UserService,RoleService],
+    providers: [UserService, RoleService],
     exports: [LoginComponent]
 })
 

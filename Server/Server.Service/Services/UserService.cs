@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Server.Service.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
         public UserService(IUserRepository userRepository)
@@ -28,9 +28,9 @@ namespace Server.Service.Services
         {
             return await _UserRepository.AddUserAsync(User);
         }
-        public async Task<User> UpdateUserAsync(int id,User User)
+        public async Task<User> UpdateUserAsync(int id, User User)
         {
-            return await _UserRepository.UpdateUserAsync(id,User);
+            return await _UserRepository.UpdateUserAsync(id, User);
         }
     }
 }

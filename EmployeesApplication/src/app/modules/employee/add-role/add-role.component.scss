@@ -1,6 +1,9 @@
 .role-form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    height: fit-content;
 }
 
 button[type="submit"] {
