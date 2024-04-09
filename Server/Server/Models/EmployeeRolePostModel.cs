@@ -4,7 +4,7 @@
     {
         public int RoleId { get; set; }
        // public int EmployeeId { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
     }
 }

@@ -1,13 +1,7 @@
-.role-form {
+.role-form div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 150px;
-    height: fit-content;
-}
-
-button[type="submit"] {
-    margin-top: 20px;
-    align-self: flex-start;
-    /* למיקום הכפתור בצד ימין */
+    flex-direction: column;
+    width: fit-content;
+    padding: 20px;
 }

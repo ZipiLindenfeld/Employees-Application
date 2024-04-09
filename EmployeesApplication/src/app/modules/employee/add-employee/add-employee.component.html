@@ -23,12 +23,17 @@
                 </mat-form-field>
                 <div *ngIf="employeeForm.get('employeeIdentification').invalid && employeeForm.get('employeeIdentification').touched"
                     style="color: red;">
-                    <div *ngIf="employeeForm.get('employeeIdentification').hasError('required')">This field is
-                        required
+                    <div
+                        *ngIf="employeeForm.get('employeeIdentification').hasError('required')&&!employeeForm.get('employeeIdentification').hasError('inValidId')&&!employeeForm.get('employeeIdentification').hasError('minlength')">
+                        This field is required
                     </div>
                     <div
-                        *ngIf="employeeForm.get('employeeIdentification').hasError('minlength') || employeeForm.get('employeeIdentification').hasError('maxlength')">
+                        *ngIf="!employeeForm.get('employeeIdentification').hasError('required')&&employeeForm.get('employeeIdentification').hasError('minlength') || employeeForm.get('employeeIdentification').hasError('maxlength')">
                         You must fill 9 letters
+                    </div>
+                    <div *ngIf="employeeForm.get('employeeIdentification').hasError('inValidId')&&!employeeForm.get('employeeIdentification').hasError('required')&&!employeeForm.get('employeeIdentification').hasError('minlength')&&!employeeForm.get('employeeIdentification').hasError('mשסlength')"
+                        style="color: red;">
+                        the Identification is invalid!
                     </div>
                 </div>
                 <br />
@@ -78,28 +83,6 @@
                         </mat-card-content>
                     </mat-card>
                 </div>
-                <div class="availableRoles">
-                    <h2>Available Roles:</h2>
-                    <mat-card>
-                        <mat-card-content>
-                            <div *ngFor="let r of AvailableRoles; let i = index" class="availableRolesDiv">
-                                <button mat-icon-button *ngIf="!showDate[i]" (click)="showDateInput(i)">
-                                    <mat-icon>add</mat-icon>
-                                </button>
-                                <p class="wide">{{ r.role.name }}</p>
-                                <div>
-                                    <br *ngIf="showDate[i]" />
-                                    <label *ngIf="showDate[i]">Enter Start Date:</label>
-                                    <input *ngIf="showDate[i]" type="date" class="wide-input">
-                                    <button mat-raised-button color="primary" *ngIf="showDate[i]"
-                                        (click)="addRole(r, i)">Add</button>
-                                    <button mat-raised-button color="warn" *ngIf="showDate[i]"
-                                        (click)="showDateInput(i)">Cancel</button>
-                                </div>
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
             </div>
         </div>
         <div id="saveOrCancel">
@@ -115,4 +98,29 @@
             </div>
         </div>
     </form>
+    <div class="availableRoles">
+        <h2>Available Roles:</h2>
+        <mat-card>
+            <mat-card-content>
+                <div *ngFor="let r of AvailableRoles; let i = index" class="availableRolesDiv">
+                    <button mat-icon-button *ngIf="!showDate[i]" (click)="showDateInput(i)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <p class="wide">{{ r.role.name }}</p>
+                    <div>
+                        <br *ngIf="showDate[i]" />
+                        <label *ngIf="showDate[i]">Enter Start Date:</label>
+                        <input *ngIf="showDate[i]" type="date" class="wide-input" [(ngModel)]="r.startDate">
+                        <div *ngIf="!isValidRoleDate(r.startDate)&&showDate[i]" style="color: red;">
+                            role's startDate must be after startDate of the job
+                        </div>
+                        <button mat-raised-button color="primary" *ngIf="showDate[i]" (click)="addRole(r, i)"
+                            [disabled]="!isValidRoleDate(r.startDate)">Add</button>
+                        <button mat-raised-button color="warn" *ngIf="showDate[i]"
+                            (click)="showDateInput(i)">Cancel</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

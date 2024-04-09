@@ -1,25 +1,15 @@
 <div class="table-options">
     <div class="search-field">
         <mat-form-field appearance="fill">
-            <mat-label>Search by name</mat-label>
-            <input matInput type="text" [(ngModel)]="pattern" (input)="change()" placeholder="Select name">
-            <button mat-button matSuffix>
-                <mat-icon>search</mat-icon>
-            </button>
+            <mat-label>Search</mat-label>
+            <input matInput type="text" [(ngModel)]="pattern" (input)="change()" placeholder="enter string">
+            <button mat-button matSuffix><mat-icon>search</mat-icon></button>
         </mat-form-field>
     </div>
     <div class="buttons">
-        <button mat-button (click)="openAddEmployeeDialog(null)">
-            <mat-icon>add_circle</mat-icon>
-            Add Employee
-        </button>
-        <button mat-button (click)="exportToExcel()">
-            <mat-icon>cloud_download</mat-icon>
-            Export to Excel
-        </button>
-        <button mat-button (click)="addRole()">
-            <mat-icon>work</mat-icon> Add Role
-        </button>
+        <button mat-button (click)="openAddEmployeeDialog(null)"><mat-icon>add_circle</mat-icon>Add Employee</button>
+        <button mat-button (click)="exportToExcel()"><mat-icon>cloud_download</mat-icon>Export to Excel</button>
+        <button mat-button (click)="addRole()"><mat-icon>work</mat-icon> Add Role</button>
     </div>
 </div>
 <div class="tableDiv">
@@ -34,7 +24,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let employee of employees">
-                <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+                <td>{{ employee.lastName }} {{ employee.firstName }}</td>
                 <td>{{ employee.employeeIdentification }}</td>
                 <td>{{ employee.startDate |date }}</td>
                 <td>

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Core.Entities;
 using Server.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Data.Repositories
 {
@@ -32,7 +27,7 @@ namespace Server.Data.Repositories
         {
             var r = await _context.Users.FirstOrDefaultAsync(u => user.Password == u.Password && user.UserName == u.UserName);
             if (r == null)
-                _context.Users.Add(user);
+                await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
         }
@@ -43,7 +38,6 @@ namespace Server.Data.Repositories
             {
                 user1.UserName = user.UserName;
                 user1.Password = user.Password;
-
             }
             else
                 return await AddUserAsync(user);

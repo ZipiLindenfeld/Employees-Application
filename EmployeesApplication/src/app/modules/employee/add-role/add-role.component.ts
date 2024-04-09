@@ -16,7 +16,6 @@ export class AddRoleComponent {
     })
   }
   add() {
-    console.log("kk", this.roleForm.value);
     this.dialogRef.close(this.roleForm.value);
   }
 }

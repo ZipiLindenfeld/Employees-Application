@@ -15,15 +15,12 @@ export class RoleService implements OnInit {
   }
   ngOnInit(): void { }
   initTokenAndHeader() {
-    if (typeof sessionStorage !== undefined) {
-      this.token = sessionStorage?.getItem('userToken');
-      this.header = new HttpHeaders().set('Authorization', this.token);
-    }
+    this.token = localStorage?.getItem('userToken');
+    this.header = new HttpHeaders().set('Authorization', this.token);
   }
 
   getRoles(): Observable<any[]> {
     this.initTokenAndHeader();
-    console.log(this.header)
     return this._http.get<any[]>(this.rolesUrl, { 'headers': this.header });
   }
 

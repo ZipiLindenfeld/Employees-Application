@@ -1,9 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Employee } from '../employee.model';
-import { ActivatedRoute } from '@angular/router';
-import { EmployeeService } from '../employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 
 @Component({
@@ -13,7 +10,9 @@ import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 })
 export class EmployeeDetailesComponent {
   employee: Employee;
-  constructor(public dialogRef: MatDialogRef<EmployeeDetailesComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    public dialogRef: MatDialogRef<EmployeeDetailesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.employee = data
   }
   return() {

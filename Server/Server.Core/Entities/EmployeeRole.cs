@@ -10,24 +10,9 @@ namespace Server.Core.Entities
     {
         // מאפייני המחלקה
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public Role? Role { get; set; }
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
-        public DateTime StartDate { get; set; }
-
-        // בנאי ריק
-        public EmployeeRole()
-        {
-        }
-
-        // בנאי עם פרמטרים
-        public EmployeeRole(Role role,Employee employee, DateTime startDate)
-        {
-            EmployeeId = employee.Id;
-            Employee = employee;
-            Role = role;
-            RoleId = role.Id;
-            StartDate = startDate;
-        }
+        public Employee? Employee { get; set; }
+        public DateOnly StartDate { get; set; }
     }
 }

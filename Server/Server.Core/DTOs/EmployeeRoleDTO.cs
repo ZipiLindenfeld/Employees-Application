@@ -9,7 +9,7 @@ namespace Server.Core.DTOs
 {
     public class EmployeeRoleDTO
     {
-        public RoleDTO Role { get; set; }
-        public DateTime StartDate { get; set; }
+        public RoleDTO? Role { get; set; }
+        public DateOnly StartDate { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Server.API.Models;
-using Server.Core.Entities;
 using Server.Core.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -28,16 +27,15 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Login([FromBody] UserPostModel loginModel)
+    public IActionResult Login([FromBody] UserPostModel userPostModel)
     {
-        var user = _userService.GetUsersAsync().Result.FirstOrDefault(u => u.UserName == loginModel.UserName);
+        var user = _userService.GetUsersAsync().Result.FirstOrDefault(u => u.UserName == userPostModel.UserName);
 
-        if (user!=null&&loginModel.Password == user.Password)
+        if (user != null && userPostModel.Password == user.Password)
         {
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-               //אפשר להוסיף פה עוד פרטים
             };
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JWT:Key")));
@@ -46,7 +44,7 @@ public class AuthController : ControllerBase
                 issuer: _configuration.GetValue<string>("JWT:Issuer"),
                 audience: _configuration.GetValue<string>("JWT:Audience"),
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(6),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: signinCredentials
             );
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);

@@ -10,19 +10,15 @@ export class UserService {
     private userUrl = 'https://localhost:7213/api';
     constructor(private _http: HttpClient) { }
     initTokenAndHeaderForPassword() {
-        if (typeof sessionStorage !== undefined) {
-            this.token = sessionStorage?.getItem('userToken');
-            this.header = new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': this.token
-            })
-        }
+        this.token = localStorage?.getItem('userToken');
+        this.header = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': this.token
+        })
     }
     initTokenAndHeader() {
-        if (typeof sessionStorage !== undefined) {
-            this.token = sessionStorage?.getItem('userToken');
-            this.header = new HttpHeaders().set('Authorization', this.token);
-        }
+        this.token = localStorage?.getItem('userToken');
+        this.header = new HttpHeaders().set('Authorization', this.token);
     }
     loginUser(user: User): Observable<any> {
         return this._http.post<any>(`${this.userUrl}/Auth`, user);

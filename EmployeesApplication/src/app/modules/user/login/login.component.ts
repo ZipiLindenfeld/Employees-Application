@@ -27,22 +27,21 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this._acr.paramMap.subscribe(paramMap => {
-      console.log(paramMap)
       if (paramMap)
         if (paramMap.has("isLogout")) {
           if (paramMap.get("isLogout"))
-            if (typeof sessionStorage !== undefined)
-              sessionStorage.removeItem('userToken');
+            localStorage.removeItem('userToken');
         }
     });
   }
   loginUser() {
     this.user = this.loginForm.value;
     this._userService.loginUser(this.user).subscribe(data => {
-      if (typeof sessionStorage !== undefined) {
-        sessionStorage?.setItem('userToken', 'Bearer ' + data.token)
-        this.router.navigate(['employee/allEmployees'])
-      }
+      localStorage?.setItem('userToken', 'Bearer ' + data.token)
+      Swal.fire({
+        title: 'welcome!!!'
+      })
+      this.router.navigate(['employee/allEmployees'])
     }
     )
   }

@@ -38,7 +38,7 @@ export class HeaderComponent {
   ) { }
 
   connected() {
-    return typeof sessionStorage !== undefined && sessionStorage?.getItem('userToken') != null;
+    return localStorage?.getItem('userToken') != null;
   }
   login() {
     this.router.navigate(['/user/login', { isLogout: true }]);

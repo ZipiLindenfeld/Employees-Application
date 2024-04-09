@@ -2,11 +2,6 @@
 using Microsoft.IdentityModel.Tokens;
 using Server.Core.Entities;
 using Server.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Data.Repositories
 {

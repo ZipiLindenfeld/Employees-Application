@@ -20,8 +20,8 @@ namespace Server.Data.Migrations
                     EmployeeIdentification = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateOnly>(type: "DateOnly2", nullable: false),
+                    BirthDate = table.Column<DateOnly>(type: "DateOnly2", nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -50,7 +50,7 @@ namespace Server.Data.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDate = table.Column<DateOnly>(type: "DateOnly2", nullable: false)
                 },
                 constraints: table =>
                 {
